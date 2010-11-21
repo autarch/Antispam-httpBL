@@ -62,3 +62,5 @@ sub check_user {
 __PACKAGE__->meta()->make_immutable();
 
 1;
+
+# ABSTRACT: Antispam checks using Project Honeypot's http blacklist
