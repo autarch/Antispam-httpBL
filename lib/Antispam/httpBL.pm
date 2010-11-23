@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use namespace::autoclean;
 
+use Antispam::Toolkit 0.06;
 use Antispam::Toolkit::Result;
 use MooseX::Types::Moose qw( Str );
 use WWW::Honeypot::httpBL;
