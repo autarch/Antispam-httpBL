@@ -22,7 +22,7 @@ my $anti = Antispam::httpBL->new( access_key => 'foo' );
 {
     $Response = '127.2.30.2';
 
-    my $result = $anti->check_user( ip => '1.1.1.1' );
+    my $result = $anti->check_ip( ip => '1.1.1.1' );
 
     is(
         $result->score(), 4,
@@ -43,7 +43,7 @@ my $anti = Antispam::httpBL->new( access_key => 'foo' );
 {
     $Response = '127.0.125.6';
 
-    my $result = $anti->check_user( ip => '1.1.1.1' );
+    my $result = $anti->check_ip( ip => '1.1.1.1' );
 
     is(
         $result->score(), 10,

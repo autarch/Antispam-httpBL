@@ -11,7 +11,7 @@ use WWW::Honeypot::httpBL;
 use Moose;
 use MooseX::StrictConstructor;
 
-with 'Antispam::Toolkit::Role::UserChecker';
+with 'Antispam::Toolkit::Role::IPChecker';
 
 has access_key => (
     is       => 'ro',
@@ -19,11 +19,9 @@ has access_key => (
     required => 1,
 );
 
-sub check_user {
+sub check_ip {
     my $self = shift;
     my %p    = @_;
-
-    return unless $p{ip};
 
     my $hp
         = WWW::Honeypot::httpBL->new( { access_key => $self->access_key() } );
@@ -71,13 +69,13 @@ __END__
 
   my $bl = Antispam::httpBL->new( access_key => 'abc123' );
 
-  my $result = $bl->check_user( ip => '1.2.3.4' );
+  my $result = $bl->check_ip( ip => '1.2.3.4' );
 
   if ( $result->score() ) { ... }
 
 =head1 DESCRIPTION
 
-This module implements the L<Antispam::Toolkit::Role::UserChecker> role using
+This module implements the L<Antispam::Toolkit::Role::IPChecker> role using
 Project Honeypot's Http:BL API to check whether a given IP address is
 associated with spamming or email harvesting.
 
@@ -91,7 +89,7 @@ This method constructs a new object. It requires an access key. You can get an
 access key from the Project Honeypot website at
 L<http://www.projecthoneypot.org/>.
 
-=head2 $bl->check_user( ip => ... )
+=head2 $bl->check_ip( ip => ... )
 
 This method checks whether an ip address is associated with some sort of
 spam-related behavior.
